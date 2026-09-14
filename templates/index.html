@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>PhishStrike</title>
-
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    >
     <link
         rel="stylesheet"
         href="{{ url_for('static', filename='css/style.css') }}"
@@ -25,9 +28,7 @@
 
         <h1 id="title">PhishStrike</h1>
 
-        <p id="subtitle">
-            Fighting Email Attacks
-        </p>
+        <p id="subtitle">Fighting Email Attacks</p>
 
         <form id="emailForm">
 
@@ -52,6 +53,20 @@
         </form>
 
         <div id="message" role="alert"></div>
+
+        <section id="result" class="result hidden">
+
+            <div id="riskBadge" class="risk-badge"></div>
+
+            <h2 id="resultTitle"></h2>
+
+            <p id="breachCount"></p>
+
+            <div id="breachList"></div>
+
+            <div id="recommendations" class="recommendations"></div>
+
+        </section>
 
     </main>
 

@@ -1,5 +1,8 @@
 from flask import Blueprint, render_template, request, jsonify
+
 from app.utils.validators import is_valid_email
+from app.services.hibp_service import check_email_breach
+
 
 main = Blueprint("main", __name__)
 
@@ -11,6 +14,7 @@ def home():
 
 @main.route("/api/check", methods=["POST"])
 def check_email():
+
     data = request.get_json(silent=True) or {}
 
     email = data.get("email", "").strip()
@@ -21,7 +25,6 @@ def check_email():
             "error": "Please enter a valid email address."
         }), 400
 
-    return jsonify({
-        "success": True,
-        "message": "Email format is valid."
-    })
+    result = check_email_breach(email)
+
+    return jsonify(result)
