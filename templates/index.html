@@ -5,11 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>PhishStrike</title>
+    <title>PhishStrike — Email Security Scanner</title>
+
+    <!-- Bootstrap 5 -->
     <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-    rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
     >
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- PhishStrike CSS -->
     <link
         rel="stylesheet"
         href="{{ url_for('static', filename='css/style.css') }}"
@@ -18,60 +30,157 @@
 
 <body>
 
-    <header>
-        <button id="languageButton" type="button">
+    <!-- Animated background -->
+    <div class="background-grid"></div>
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
+
+    <!-- Top bar -->
+    <header class="topbar">
+        <div class="brand">
+            <span class="brand-symbol">◈</span>
+            <span>PHISH<span class="brand-accent">STRIKE</span></span>
+        </div>
+
+        <button id="languageButton" class="language-button" type="button">
             العربية
         </button>
     </header>
 
-    <main>
 
-        <h1 id="title">PhishStrike</h1>
+    <main class="main-container">
 
-        <p id="subtitle">Fighting Email Attacks</p>
+        <!-- System status -->
+        <div class="system-status">
+            <span class="status-dot"></span>
+            <span>SYSTEM ONLINE</span>
+            <span class="status-divider">/</span>
+            <span>EMAIL SECURITY SCANNER</span>
+        </div>
 
-        <form id="emailForm">
 
-            <label id="emailLabel" for="email">
-                Enter your email
-            </label>
+        <!-- Hero -->
+        <section class="hero-section">
 
-            <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="example@email.com"
-                maxlength="254"
-                autocomplete="off"
-                required
-            >
+            <div class="hero-tag">
+                <span>//</span> FIGHTING EMAIL ATTACKS
+            </div>
 
-            <button id="checkButton" type="submit">
-                Check Email
-            </button>
+            <h1 id="title">
+                Is your email
+                <span>exposed?</span>
+            </h1>
 
-        </form>
+            <p id="subtitle">
+                Check your email against known data breaches
+                and understand your security risk.
+            </p>
 
-        <div id="message" role="alert"></div>
 
-        <section id="result" class="result hidden">
+            <!-- Scanner card -->
+            <div class="scanner-card">
 
-            <div id="riskBadge" class="risk-badge"></div>
+                <div class="scanner-header">
+                    <div>
+                        <span class="small-label">SECURITY SCAN</span>
+                        <span class="scan-status">READY</span>
+                    </div>
 
-            <h2 id="resultTitle"></h2>
+                    <span class="scan-icon">⌁</span>
+                </div>
 
-            <p id="breachCount"></p>
 
-            <div id="breachList"></div>
+                <form id="emailForm">
 
-            <div id="recommendations" class="recommendations"></div>
+                    <label id="emailLabel" for="email">
+                        Enter your email address
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">@</span>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="example@email.com"
+                            maxlength="254"
+                            autocomplete="off"
+                            required
+                        >
+
+                    </div>
+
+                    <button id="checkButton" class="scan-button" type="submit">
+                        <span>SCAN EMAIL</span>
+                        <span class="button-arrow">→</span>
+                    </button>
+
+                </form>
+
+
+                <div class="privacy-note">
+                    <span>⌾</span>
+                    No password required
+                    <span class="note-divider">•</span>
+                    Your credentials are never requested
+                </div>
+
+            </div>
+
+
+            <!-- Message / Results -->
+            <div id="message" role="alert"></div>
+
+            <div id="result" class="result-card hidden">
+
+                <div id="riskBadge" class="risk-badge"></div>
+
+                <h2 id="resultTitle"></h2>
+
+                <p id="breachCount"></p>
+
+                <div id="breachList" class="breach-list"></div>
+
+                <div id="recommendations" class="recommendations"></div>
+
+            </div>
+
+
+            <!-- Scanner information -->
+            <div class="scanner-info">
+
+                <div class="info-item">
+                    <span class="info-label">SOURCE</span>
+                    <span class="info-value">HIBP API</span>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">PROCESSING</span>
+                    <span class="info-value">TEMPORARY</span>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">LANGUAGE</span>
+                    <span class="info-value">AR / EN</span>
+                </div>
+
+            </div>
 
         </section>
 
     </main>
 
+
+    <footer>
+        <span>PHISHSTRIKE</span>
+        <span>EMAIL SECURITY TOOL</span>
+        <span>2026</span>
+    </footer>
+
+
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 </body>
-
 </html>

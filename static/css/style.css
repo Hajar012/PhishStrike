@@ -1,140 +1,1264 @@
+/* =========================================================
+   PHISHSTRIKE
+   Main UI
+   ========================================================= */
+
 * {
     box-sizing: border-box;
 }
 
+:root {
+    --bg: #07070d;
+    --bg-secondary: #0d0d16;
+    --card: rgba(16, 16, 27, 0.88);
+    --border: rgba(145, 110, 255, 0.18);
+
+    --purple: #8b5cf6;
+    --purple-light: #a78bfa;
+    --purple-glow: rgba(139, 92, 246, 0.35);
+
+    --orange: #ff6b35;
+    --text: #f5f3ff;
+    --muted: #9290a4;
+    --green: #35e69a;
+
+    --danger: #ff536b;
+    --danger-light: #ff7184;
+
+    --mono: "Space Mono", monospace;
+    --main-font: "Inter", sans-serif;
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f7f5ff;
-    color: #222;
+    min-height: 100vh;
+
+    font-family: var(--main-font);
+    color: var(--text);
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(104, 67, 180, 0.12),
+            transparent 35%
+        ),
+        var(--bg);
+
+    overflow-x: hidden;
 }
 
-header {
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.background-grid {
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+
+    background-image:
+        linear-gradient(
+            rgba(139, 92, 246, 0.045) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(139, 92, 246, 0.045) 1px,
+            transparent 1px
+        );
+
+    background-size: 55px 55px;
+
+    mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 90%
+    );
+}
+
+.glow {
+    position: fixed;
+
+    width: 450px;
+    height: 450px;
+
+    border-radius: 50%;
+    filter: blur(120px);
+
+    z-index: -2;
+    pointer-events: none;
+}
+
+.glow-one {
+    top: -200px;
+    left: 15%;
+
+    background: rgba(110, 65, 220, 0.13);
+
+    animation: floatGlow 8s ease-in-out infinite;
+}
+
+.glow-two {
+    right: -200px;
+    bottom: -150px;
+
+    background: rgba(255, 107, 53, 0.08);
+
+    animation: floatGlow 10s ease-in-out infinite reverse;
+}
+
+@keyframes floatGlow {
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(25px, -20px);
+    }
+}
+
+
+/* =========================================================
+   TOP BAR
+   ========================================================= */
+
+.topbar {
+    width: min(1150px, 92%);
+    margin: auto;
+
+    padding: 28px 0;
+
     display: flex;
-    justify-content: flex-end;
-    padding: 20px;
+    align-items: center;
+    justify-content: space-between;
 }
 
-header button {
-    padding: 8px 14px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    background: white;
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.brand-symbol {
+    color: var(--purple-light);
+
+    font-size: 20px;
+
+    text-shadow:
+        0 0 15px var(--purple-glow);
+}
+
+.brand-accent {
+    color: var(--purple-light);
+}
+
+.language-button {
+    padding: 8px 15px;
+
+    color: #d7d3e8;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 7px;
+
+    font-family: var(--main-font);
+    font-size: 13px;
+
     cursor: pointer;
+
+    transition: 0.25s ease;
 }
 
-main {
-    width: min(600px, 90%);
-    margin: 60px auto;
-    padding: 40px;
+.language-button:hover {
+    color: white;
+
+    border-color: rgba(139, 92, 246, 0.5);
+
+    background: rgba(139, 92, 246, 0.1);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.main-container {
+    width: min(900px, 92%);
+    margin: 0 auto;
+}
+
+.hero-section {
     text-align: center;
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+
+    padding: 55px 0 90px;
+}
+
+
+/* =========================================================
+   SYSTEM STATUS
+   ========================================================= */
+
+.system-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    margin-bottom: 38px;
+
+    color: #777587;
+
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 1.3px;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+
+    box-shadow:
+        0 0 10px rgba(53, 230, 154, 0.7);
+
+    animation: pulse 2s infinite;
+}
+
+.status-divider {
+    color: #383745;
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.35;
+    }
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero-tag {
+    margin-bottom: 18px;
+
+    color: var(--purple-light);
+
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.hero-tag span {
+    color: var(--orange);
 }
 
 h1 {
-    margin-bottom: 8px;
+    margin: 0;
+
+    font-size: clamp(42px, 7vw, 72px);
+    font-weight: 800;
+    line-height: 1.05;
+
+    letter-spacing: -3px;
 }
 
-form {
-    margin-top: 30px;
+h1 span {
+    color: var(--purple-light);
+
+    text-shadow:
+        0 0 30px rgba(139, 92, 246, 0.2);
 }
 
-label {
-    display: block;
-    margin-bottom: 10px;
+#subtitle {
+    width: min(580px, 100%);
+
+    margin: 22px auto 0;
+
+    color: var(--muted);
+
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   SCANNER CARD
+   ========================================================= */
+
+.scanner-card {
+    position: relative;
+    overflow: hidden;
+
+    width: min(680px, 100%);
+
+    margin: 45px auto 0;
+    padding: 25px;
+
     text-align: left;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(24, 23, 39, 0.96),
+            rgba(11, 11, 19, 0.96)
+        );
+
+    border: 1px solid var(--border);
+    border-radius: 15px;
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.45),
+        inset 0 1px rgba(255, 255, 255, 0.025);
 }
 
-input {
-    width: 100%;
-    padding: 13px;
-    margin-bottom: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 15px;
+.scanner-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 12%;
+
+    width: 76%;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--purple),
+            transparent
+        );
+
+    opacity: 0.7;
 }
 
-form button {
+.scanner-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 22px;
+}
+
+.small-label {
+    color: #777587;
+
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 1.4px;
+}
+
+.scan-status {
+    margin-left: 10px;
+
+    padding: 4px 8px;
+
+    color: var(--green);
+
+    background: rgba(53, 230, 154, 0.07);
+
+    border: 1px solid rgba(53, 230, 154, 0.18);
+    border-radius: 4px;
+
+    font-family: var(--mono);
+    font-size: 9px;
+}
+
+.scan-icon {
+    color: var(--purple-light);
+
+    font-size: 22px;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+#emailLabel {
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: #bbb8c8;
+
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-icon {
+    position: absolute;
+
+    left: 17px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: var(--purple-light);
+
+    font-family: var(--mono);
+    font-size: 16px;
+
+    pointer-events: none;
+}
+
+#email {
     width: 100%;
-    padding: 13px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    background: #6c4cc7;
+
+    padding: 16px 18px 16px 48px;
+
     color: white;
-    font-size: 15px;
+
+    background: rgba(5, 5, 10, 0.8);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 9px;
+
+    outline: none;
+
+    font-family: var(--main-font);
+    font-size: 14px;
+
+    transition: 0.25s ease;
 }
 
-form button:hover {
-    opacity: 0.9;
+#email::placeholder {
+    color: #565463;
 }
+
+#email:focus {
+    border-color: rgba(139, 92, 246, 0.65);
+
+    box-shadow:
+        0 0 0 3px rgba(139, 92, 246, 0.08),
+        0 0 30px rgba(139, 92, 246, 0.08);
+}
+
+
+/* =========================================================
+   SCAN BUTTON
+   ========================================================= */
+
+.scan-button {
+    width: 100%;
+
+    margin-top: 12px;
+    padding: 15px 18px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7650e8,
+            #6240c9
+        );
+
+    border: 1px solid rgba(167, 139, 250, 0.35);
+    border-radius: 9px;
+
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 25px rgba(98, 64, 201, 0.18);
+
+    transition: 0.25s ease;
+}
+
+.scan-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 14px 35px rgba(98, 64, 201, 0.3);
+
+    filter: brightness(1.08);
+}
+
+.scan-button:active {
+    transform: translateY(0);
+}
+
+.button-arrow {
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   PRIVACY NOTE
+   ========================================================= */
+
+.privacy-note {
+    margin-top: 17px;
+
+    text-align: center;
+
+    color: #646272;
+
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.5px;
+}
+
+.privacy-note span:first-child {
+    color: var(--green);
+}
+
+.note-divider {
+    margin: 0 7px;
+
+    color: #393844;
+}
+
+
+/* =========================================================
+   RESULTS
+   ========================================================= */
 
 #message {
-    margin-top: 20px;
-    min-height: 24px;
-}
+    width: min(680px, 100%);
 
-.result {
-    margin-top: 25px;
-    padding: 25px;
-    border-radius: 12px;
-    background: #f8f8fb;
+    margin: 20px auto 0;
+
     text-align: left;
+
+    line-height: 1.6;
 }
 
 .hidden {
+    display: none !important;
+}
+
+#result {
+    width: 100%;
+
+    margin-top: 32px;
+
+    text-align: left;
+
+    animation: resultAppear 0.5s ease forwards;
+}
+
+#result.hidden {
     display: none;
 }
 
-.risk-badge {
-    display: inline-block;
-    padding: 7px 14px;
-    border-radius: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
+@keyframes resultAppear {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
 
-.result h2 {
-    margin: 5px 0 10px;
-}
-
-#breachCount {
-    margin-bottom: 20px;
-}
-
-.breach-item {
-    padding: 12px;
-    margin-bottom: 10px;
-    background: white;
-    border-radius: 8px;
-    border: 1px solid #eee;
-}
-
-.breach-item strong {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.recommendations {
-    margin-top: 20px;
-    padding: 15px;
-    border-radius: 8px;
-    background: white;
-}
-
-.recommendations h3 {
-    margin-top: 0;
-}
-
-.recommendations ul {
-    padding-left: 20px;
-}
-
-@media (max-width: 600px) {
-    main {
-        margin: 30px auto;
-        padding: 25px;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
+
+
+/* =========================================================
+   RESULT CONTAINER
+   ========================================================= */
+
+.result-safe,
+.result-danger {
+    position: relative;
+    overflow: hidden;
+
+    padding: 28px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.055),
+            rgba(255, 255, 255, 0.018)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+    backdrop-filter: blur(18px);
+}
+
+.result-danger {
+    border-color: rgba(255, 83, 107, 0.18);
+}
+
+.result-safe {
+    border-color: rgba(53, 230, 154, 0.16);
+}
+
+.result-danger::before,
+.result-safe::before {
+    content: "";
+
+    position: absolute;
+
+    top: -100px;
+    left: 20%;
+
+    width: 60%;
+    height: 160px;
+
+    filter: blur(60px);
+
+    opacity: 0.12;
+
+    pointer-events: none;
+}
+
+.result-danger::before {
+    background: var(--danger);
+}
+
+.result-safe::before {
+    background: var(--green);
+}
+
+
+/* =========================================================
+   RISK BADGE
+   ========================================================= */
+
+#riskBadge {
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+
+    padding: 7px 13px;
+
+    margin-bottom: 14px;
+
+    border-radius: 999px;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.result-danger #riskBadge {
+    color: var(--danger-light);
+
+    background: rgba(255, 64, 92, 0.10);
+
+    border: 1px solid rgba(255, 64, 92, 0.22);
+
+    box-shadow:
+        0 0 20px rgba(255, 64, 92, 0.08);
+}
+
+.result-safe #riskBadge {
+    color: #55e5a0;
+
+    background: rgba(62, 229, 155, 0.10);
+
+    border: 1px solid rgba(62, 229, 155, 0.20);
+}
+
+
+/* =========================================================
+   RESULT TITLE
+   ========================================================= */
+
+#resultTitle {
+    position: relative;
+
+    margin: 0;
+
+    color: white;
+
+    font-size: clamp(20px, 3vw, 27px);
+
+    line-height: 1.25;
+
+    font-weight: 750;
+
+    letter-spacing: -0.02em;
+}
+
+
+/* =========================================================
+   BREACH COUNT
+   ========================================================= */
+
+#breachCount {
+    display: inline-block;
+
+    margin-top: 8px;
+    margin-bottom: 22px;
+
+    color: rgba(255, 255, 255, 0.45);
+
+    font-family: var(--mono);
+    font-size: 12px;
+
+    letter-spacing: 0.04em;
+}
+
+
+/* =========================================================
+   BREACH LIST
+   ========================================================= */
+
+.breach-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 16px;
+}
+
+
+/* =========================================================
+   BREACH CARD
+   ========================================================= */
+
+.breach-card {
+    position: relative;
+    overflow: hidden;
+
+    padding: 22px;
+
+    border-radius: 16px;
+
+    background:
+        rgba(255, 255, 255, 0.025);
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+.breach-card:hover {
+    transform: translateY(-2px);
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    border-color:
+        rgba(255, 85, 105, 0.25);
+}
+
+.breach-card::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 18px;
+    bottom: 18px;
+
+    width: 3px;
+
+    border-radius: 0 4px 4px 0;
+
+    background: var(--danger);
+
+    opacity: 0.8;
+}
+
+
+/* =========================================================
+   BREACH HEADER
+   ========================================================= */
+
+.breach-card-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 18px;
+}
+
+
+/* =========================================================
+   COMPANY
+   ========================================================= */
+
+.breach-name {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    min-width: 0;
+}
+
+.breach-name h3 {
+    margin: 0;
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.01em;
+}
+
+.breach-name span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: rgba(255, 255, 255, 0.38);
+
+    font-family: var(--mono);
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.breach-logo {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    object-fit: contain;
+
+    padding: 9px;
+
+    border-radius: 12px;
+
+    background: white;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================================================
+   BREACHED LABEL
+   ========================================================= */
+
+.breach-alert {
+    flex-shrink: 0;
+
+    padding: 6px 9px;
+
+    color: var(--danger-light);
+
+    background: rgba(255, 64, 92, 0.08);
+
+    border: 1px solid rgba(255, 64, 92, 0.16);
+    border-radius: 6px;
+
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.breach-description {
+    margin-bottom: 20px;
+
+    padding: 15px 16px;
+
+    color: rgba(255, 255, 255, 0.62);
+
+    background:
+        rgba(0, 0, 0, 0.12);
+
+    border-radius: 11px;
+
+    font-size: 12.5px;
+    line-height: 1.75;
+}
+
+.breach-description a {
+    color: #a99cff;
+
+    text-decoration: none;
+
+    border-bottom:
+        1px solid rgba(169, 156, 255, 0.3);
+}
+
+.breach-description a:hover {
+    border-bottom-color: #a99cff;
+}
+
+
+/* =========================================================
+   STATS
+   ========================================================= */
+
+.breach-stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 10px;
+}
+
+.breach-stat {
+    padding: 13px 14px;
+
+    background:
+        rgba(255, 255, 255, 0.025);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.045);
+
+    border-radius: 10px;
+}
+
+.stat-label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: rgba(255, 255, 255, 0.35);
+
+    font-family: var(--mono);
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.08em;
+}
+
+.breach-stat strong {
+    display: block;
+
+    color: rgba(255, 255, 255, 0.82);
+
+    font-size: 12px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   EXPOSED DATA
+   ========================================================= */
+
+.data-classes {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin-top: 15px;
+}
+
+.data-classes span {
+    padding: 6px 9px;
+
+    color: rgba(255, 255, 255, 0.62);
+
+    background:
+        rgba(120, 100, 255, 0.08);
+
+    border:
+        1px solid rgba(120, 100, 255, 0.15);
+
+    border-radius: 7px;
+
+    font-family: var(--mono);
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   RECOMMENDATIONS
+   ========================================================= */
+
+#recommendations {
+    position: relative;
+
+    margin-top: 18px;
+
+    padding: 18px 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(120, 100, 255, 0.08),
+            rgba(120, 100, 255, 0.025)
+        );
+
+    border:
+        1px solid rgba(120, 100, 255, 0.13);
+
+    border-radius: 13px;
+}
+
+#recommendations h3 {
+    margin: 0 0 7px;
+
+    color: white;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+#recommendations p {
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.58);
+
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   SCANNER INFO
+   ========================================================= */
+
+.scanner-info {
+    width: min(680px, 100%);
+
+    margin: 28px auto 0;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.06);
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.06);
+}
+
+.info-item {
+    padding: 17px 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    text-align: center;
+}
+
+.info-item + .info-item {
+    border-left:
+        1px solid rgba(255, 255, 255, 0.06);
+}
+
+.info-label {
+    color: #5d5b6a;
+
+    font-family: var(--mono);
+    font-size: 8px;
+
+    letter-spacing: 1.2px;
+}
+
+.info-value {
+    color: #aaa7b8;
+
+    font-family: var(--mono);
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+    width: min(1150px, 92%);
+
+    margin: auto;
+    padding: 20px 0 30px;
+
+    display: flex;
+    justify-content: space-between;
+
+    color: #4c4a58;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.04);
+
+    font-family: var(--mono);
+    font-size: 8px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   RTL
+   ========================================================= */
+
+html[dir="rtl"] .scanner-card {
+    text-align: right;
+}
+
+html[dir="rtl"] #message,
+html[dir="rtl"] #result {
+    text-align: right;
+}
+
+html[dir="rtl"] .input-icon {
+    left: auto;
+    right: 17px;
+}
+
+html[dir="rtl"] #email {
+    padding-left: 18px;
+    padding-right: 48px;
+}
+
+html[dir="rtl"] .breach-card::before {
+    left: auto;
+    right: 0;
+
+    border-radius: 4px 0 0 4px;
+}
+
+html[dir="rtl"] .info-item + .info-item {
+    border-left: none;
+
+    border-right:
+        1px solid rgba(255, 255, 255, 0.06);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    .topbar {
+        padding: 20px 0;
+    }
+
+    .hero-section {
+        padding-top: 35px;
+    }
+
+    .system-status {
+        font-size: 8px;
+        gap: 6px;
+    }
+
+    h1 {
+        font-size: 43px;
+        letter-spacing: -2px;
+    }
+
+    #subtitle {
+        font-size: 14px;
+    }
+
+    .scanner-card {
+        padding: 18px;
+    }
+
+    .scanner-info {
+        grid-template-columns: 1fr;
+    }
+
+    .info-item + .info-item {
+        border-left: none;
+
+        border-top:
+            1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    html[dir="rtl"] .info-item + .info-item {
+        border-right: none;
+    }
+
+    footer {
+        flex-direction: column;
+
+        gap: 8px;
+
+        text-align: center;
+    }
+
+    .result-safe,
+    .result-danger {
+        padding: 20px;
+    }
+
+    .breach-card {
+        padding: 18px;
+    }
+
+    .breach-card-header {
+        align-items: flex-start;
+    }
+
+    .breach-alert {
+        display: none;
+    }
+
+    .breach-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .breach-description {
+        font-size: 12px;
+    }
+}git 
