@@ -581,7 +581,8 @@ h1 span {
     pointer-events: none;
 }
 
-#email {
+#email,
+#urlInput {
     width: 100%;
 
     padding: 16px 18px 16px 48px;
@@ -601,11 +602,13 @@ h1 span {
     transition: 0.25s ease;
 }
 
-#email::placeholder {
+#email::placeholder,
+#urlInput::placeholder {
     color: #565463;
 }
 
-#email:focus {
+#email:focus,
+#urlInput:focus {
     border-color: rgba(139, 92, 246, 0.65);
 
     box-shadow:
@@ -1556,7 +1559,8 @@ footer {
    RTL
    ========================================================= */
 
-html[dir="rtl"] .scanner-card {
+html[dir="rtl"] .scanner-card,
+html[dir="rtl"] .analyzer-card {
     text-align: right;
 }
 
@@ -1570,7 +1574,8 @@ html[dir="rtl"] .input-icon {
     right: 17px;
 }
 
-html[dir="rtl"] #email {
+html[dir="rtl"] #email,
+html[dir="rtl"] #urlInput {
     padding-left: 18px;
     padding-right: 48px;
 }

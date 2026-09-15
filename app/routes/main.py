@@ -3,6 +3,7 @@ from flask import Blueprint, render_template, request, jsonify
 from app.utils.validators import is_valid_email
 from app.services.hibp_service import check_email_breach
 from app.services.phishing_analyzer import analyze_email, MAX_CONTENT_LENGTH
+from app.services.url_analyzer import analyze_url, MAX_URL_LENGTH
 
 
 main = Blueprint("main", __name__)
@@ -16,6 +17,11 @@ def home():
 @main.route("/phishing")
 def phishing_analyzer():
     return render_template("phishing.html")
+
+
+@main.route("/url-checker")
+def url_checker():
+    return render_template("url_checker.html")
 
 
 @main.route("/api/check", methods=["POST"])
@@ -55,3 +61,32 @@ def analyze_phishing():
         }), 400
 
     return jsonify(analyze_email(content))
+
+
+@main.route("/api/url-checker", methods=["POST"])
+def analyze_suspicious_url():
+    data = request.get_json(silent=True) or {}
+
+    url = (data.get("url") or "").strip()
+
+    if not url:
+        return jsonify({
+            "success": False,
+            "error": "Please provide a URL to check."
+        }), 400
+
+    if len(url) > MAX_URL_LENGTH:
+        return jsonify({
+            "success": False,
+            "error": f"URL must be under {MAX_URL_LENGTH} characters."
+        }), 400
+
+    try:
+        result = analyze_url(url)
+    except ValueError:
+        return jsonify({
+            "success": False,
+            "error": "That does not look like a valid URL."
+        }), 400
+
+    return jsonify(result)

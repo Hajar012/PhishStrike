@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}PhishStrike — Suspicious URL Checker{% endblock %}
+
+{% block system_status %}SUSPICIOUS URL CHECKER{% endblock %}
+
+{% block footer_text %}URL ANALYSIS TOOL{% endblock %}
+
+{% block content %}
+<!-- Hero -->
+<section class="hero-section">
+
+    <div class="hero-tag">
+        <span>//</span> INSPECTING SUSPICIOUS LINKS
+    </div>
+
+    <h1 id="title">
+        Is this link
+        <span>dangerous?</span>
+    </h1>
+
+    <p id="subtitle">
+        Paste a suspicious URL to analyze its structure and risk indicators.
+        The link is analyzed as text and is never opened.
+    </p>
+
+
+    <!-- Analyzer card -->
+    <div class="analyzer-card">
+
+        <div class="scanner-header">
+            <div>
+                <span class="small-label">URL ANALYSIS</span>
+                <span class="scan-status">READY</span>
+            </div>
+
+            <span class="scan-icon">⌗</span>
+        </div>
+
+
+        <form id="urlForm">
+
+            <label id="urlLabel" for="urlInput">
+                Paste a suspicious URL
+            </label>
+
+            <div class="input-wrapper">
+
+                <span class="input-icon">↗</span>
+
+                <input
+                    type="text"
+                    id="urlInput"
+                    name="url"
+                    placeholder="http://secure-login.example.com/verify?account=1"
+                    maxlength="2048"
+                    autocomplete="off"
+                    spellcheck="false"
+                    required
+                >
+
+            </div>
+
+            <button id="checkUrlButton" class="scan-button" type="submit">
+                <span>CHECK URL</span>
+                <span class="button-arrow">→</span>
+            </button>
+
+        </form>
+
+
+        <div class="privacy-note">
+            <span>⌾</span>
+            Analyzed as text
+            <span class="note-divider">•</span>
+            The link is never opened or executed
+        </div>
+
+    </div>
+
+
+    <!-- Message / Results -->
+    <div id="message" role="alert"></div>
+
+    <div id="result" class="result-card hidden">
+
+        <div id="riskBadge" class="risk-badge"></div>
+
+        <h2 id="resultTitle"></h2>
+
+        <p id="indicatorCount"></p>
+
+        <div id="indicatorList" class="indicator-list"></div>
+
+        <div id="recommendations" class="recommendations"></div>
+
+    </div>
+
+
+    <!-- Analyzer information -->
+    <div class="scanner-info">
+
+        <div class="info-item">
+            <span class="info-label">ANALYSIS</span>
+            <span class="info-value">TEXT-BASED</span>
+        </div>
+
+        <div class="info-item">
+            <span class="info-label">CHECKS</span>
+            <span class="info-value">12+ PATTERNS</span>
+        </div>
+
+        <div class="info-item">
+            <span class="info-label">LANGUAGE</span>
+            <span class="info-value">AR / EN</span>
+        </div>
+
+    </div>
+
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/url_checker.js') }}"></script>
+{% endblock %}
