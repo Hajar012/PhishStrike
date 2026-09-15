@@ -54,8 +54,9 @@
             <a href="{{ url_for('main.url_checker') }}" class="nav-link {% if request.endpoint == 'main.url_checker' %}active{% endif %}">
                 URL Checker
             </a>
-            <!-- Placeholder for future pages -->
-            <span class="nav-link coming-soon">Security Quiz <small>(Coming Soon)</small></span>
+            <a href="{{ url_for('main.quiz') }}" class="nav-link {% if request.endpoint == 'main.quiz' %}active{% endif %}">
+                Security Quiz
+            </a>
         </nav>
 
         <button id="languageButton" class="language-button" type="button">

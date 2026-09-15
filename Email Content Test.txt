@@ -1,104 +1,84 @@
-1. LOW RISK
-Subject: Monthly Statement Available
+# HIBP API Tests
 
-Dear customer!!
+## 0 Breaches
+not-active-breach@hibp-integration-tests.com
 
-Your monthly statement is now available for your review.
+## 1 Breach
+account-exists@hibp-integration-tests.com
 
-You can check it through your usual official banking application whenever convenient.
+## 3 Breaches
+multiple-breaches@hibp-integration-tests.com
 
-No password, verification code, or payment information is requested.
 
-Thank you,
-Customer Support
+# Phishing Email Analyzer Tests
 
----
-الموضوع: كشف الحساب الشهري
+## Low Risk
 
-عزيزي العميل!!
+From: notifications@linkedin.com
+Subject: You have a new notification
 
-كشف حسابك الشهري متاح الآن للمراجعة.
+Hi Hajer,
 
-يمكنك الاطلاع عليه من خلال تطبيق البنك الرسمي في الوقت الذي يناسبك.
+You have a new notification waiting for you on LinkedIn.
+Visit LinkedIn to view your notifications.
 
-لا نطلب منك كلمة المرور أو رمز التحقق أو أي معلومات دفع.
+Best,
+The LinkedIn Team
 
-شكراً،
-خدمة العملاء
 
-2. MEDIUM RISK
-Subject: Final Reminder — Action Required
+## Medium Risk
+
+From: support@example.com
+Subject: Action required: Account verification
 
 Dear customer,
 
-This is your final reminder. Please review the attached document within 24 hours.
+We noticed unusual activity on your account. Please verify your account within 24 hours to avoid temporary suspension.
 
-You can also review the information here:
-http://account-update.xyz/statement
-
-Failure to review the document may delay your account services.
+Click here to verify your account:
+https://example.com/verify
 
 Thank you,
-Customer Support
+Account Support Team
 
----
-الموضوع: تحذير أخير — مطلوب إجراء
 
-عزيزي العميل،
+## High Risk
 
-هذا هو التحذير الأخير. يرجى مراجعة الملف المرفق خلال 24 ساعة.
-
-يمكنك أيضاً مراجعة المعلومات من خلال الرابط التالي:
-http://account-update.xyz/statement
-
-قد يؤدي عدم مراجعة المستند إلى تأخير بعض خدمات حسابك.
-
-شكراً،
-خدمة العملاء
-
-3. CRITICAL RISK
-Subject: URGENT — Your Account Will Be Suspended!
-
-From: Microsoft Security <security.alerts@gmail.com>
-Reply-To: security-team@account-verification.xyz
+From: Microsoft Support <microsoft.account.security@gmail.com>
+Subject: URGENT!! Your account will be suspended
 
 Dear user,
 
-URGENT!! Your account has been suspended due to unauthorized activity.
+URGENT!! Your Microsoft account has been compromised and will be permanently closed within 24 hours.
 
-You must verify your identity immediately within 2 hours to avoid permanent account closure.
+You must verify your password and account immediately by clicking the link below:
 
-Confirm your account and password here:
-http://microsoft-security-verification.xyz/login
+http://192.168.1.50/login
 
-Please enter your username, password, OTP, and credit card number to complete verification.
+Please confirm your password, username, and one-time code immediately to avoid account suspension.
 
-Failure to comply will result in permanent loss of access to your account.
-
-Open the attached security document immediately.
+Failure to act now may result in permanent account deletion.
 
 Microsoft Security Team
 
----
-الموضوع: عاجل — سيتم إيقاف حسابك!
 
-من: فريق أمان Microsoft <security.alerts@gmail.com>
-الرد إلى: security-team@account-verification.xyz
+# URL Checker Tests
 
-عزيزي المستخدم،
+## Low Risk
 
-عاجل!! تم إيقاف حسابك بسبب نشاط غير مصرح به.
+https://www.microsoft.com
 
-يجب عليك التحقق من هويتك فوراً خلال ساعتين لتجنب إغلاق حسابك بشكل دائم.
 
-قم بتأكيد حسابك وكلمة المرور من خلال الرابط التالي:
-http://microsoft-security-verification.xyz/login
+## Medium Risk
 
-يرجى إدخال اسم المستخدم وكلمة المرور ورمز التحقق ورقم البطاقة البنكية لإكمال عملية التحقق.
+http://secure-account.example.top/verify
 
-سيؤدي عدم الامتثال إلى فقدان الوصول إلى حسابك بشكل دائم.
 
-افتح الملف المرفق فوراً.
+## High Risk
 
-فريق أمان Microsoft
+http://paypal.secure-login.xyz/verify?account=user@example.com&session=12345&redirect=login
 
+
+## Critical Risk
+
+javascript:alert(document.cookie)

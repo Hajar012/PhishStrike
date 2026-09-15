@@ -24,6 +24,11 @@ def url_checker():
     return render_template("url_checker.html")
 
 
+@main.route("/quiz")
+def quiz():
+    return render_template("quiz.html")
+
+
 @main.route("/api/check", methods=["POST"])
 def check_email():
 

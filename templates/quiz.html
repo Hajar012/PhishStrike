@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}PhishStrike — Security Awareness Quiz{% endblock %}
+
+{% block system_status %}SECURITY AWARENESS QUIZ{% endblock %}
+
+{% block footer_text %}SECURITY AWARENESS TOOL{% endblock %}
+
+{% block content %}
+<!-- Hero -->
+<section class="hero-section">
+
+    <div class="hero-tag">
+        <span>//</span> TEST YOUR SECURITY INSTINCTS
+    </div>
+
+    <h1 id="title">
+        How aware
+        <span>are you?</span>
+    </h1>
+
+    <p id="subtitle">
+        Answer a short set of phishing and security questions.
+        Your score is calculated locally — nothing is stored.
+    </p>
+
+
+    <!-- Quiz card -->
+    <div class="analyzer-card quiz-card">
+
+        <div class="scanner-header">
+            <div>
+                <span class="small-label">SECURITY QUIZ</span>
+                <span id="quizProgress" class="scan-status">QUESTION 1 / 8</span>
+            </div>
+
+            <span class="scan-icon">?</span>
+        </div>
+
+        <div class="quiz-progress">
+            <div id="quizProgressBar" class="quiz-progress-bar"></div>
+        </div>
+
+        <div id="quizBody"></div>
+
+    </div>
+
+
+    <!-- Quiz information -->
+    <div class="scanner-info">
+
+        <div class="info-item">
+            <span class="info-label">QUESTIONS</span>
+            <span class="info-value">8</span>
+        </div>
+
+        <div class="info-item">
+            <span class="info-label">MODE</span>
+            <span class="info-value">INTERACTIVE</span>
+        </div>
+
+        <div class="info-item">
+            <span class="info-label">LANGUAGE</span>
+            <span class="info-value">AR / EN</span>
+        </div>
+
+    </div>
+
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/quiz.js') }}"></script>
+{% endblock %}
