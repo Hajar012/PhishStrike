@@ -682,15 +682,48 @@ h1 span {
     text-transform: uppercase;
 }
 
-.result-danger #riskBadge {
-    color: var(--danger-light);
+.result-low #riskBadge {
+    color: #f0c674;
 
-    background: rgba(255, 64, 92, 0.10);
+    background: rgba(240, 198, 116, 0.10);
 
-    border: 1px solid rgba(255, 64, 92, 0.22);
+    border: 1px solid rgba(240, 198, 116, 0.22);
 
     box-shadow:
-        0 0 20px rgba(255, 64, 92, 0.08);
+        0 0 20px rgba(240, 198, 116, 0.08);
+}
+
+.result-medium #riskBadge {
+    color: #ffa64d;
+
+    background: rgba(255, 166, 77, 0.10);
+
+    border: 1px solid rgba(255, 166, 77, 0.22);
+
+    box-shadow:
+        0 0 20px rgba(255, 166, 77, 0.08);
+}
+
+.result-high #riskBadge {
+    color: #ff6b6b;
+
+    background: rgba(255, 107, 107, 0.10);
+
+    border: 1px solid rgba(255, 107, 107, 0.22);
+
+    box-shadow:
+        0 0 20px rgba(255, 107, 107, 0.08);
+}
+
+.result-critical #riskBadge {
+    color: #ff4040;
+
+    background: rgba(255, 64, 64, 0.15);
+
+    border: 1px solid rgba(255, 64, 64, 0.25);
+
+    box-shadow:
+        0 0 25px rgba(255, 64, 64, 0.12);
 }
 
 .result-safe #riskBadge {
@@ -1238,7 +1271,10 @@ html[dir="rtl"] .info-item + .info-item {
     }
 
     .result-safe,
-    .result-danger {
+    .result-low,
+    .result-medium,
+    .result-high,
+    .result-critical {
         padding: 20px;
     }
 
@@ -1261,4 +1297,4 @@ html[dir="rtl"] .info-item + .info-item {
     .breach-description {
         font-size: 12px;
     }
-}git 
+}

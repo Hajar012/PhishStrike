@@ -1,6 +1,8 @@
 import os
 import requests
 
+from app.services.risk_assessment import calculate_risk_score
+
 
 HIBP_URL = "https://haveibeenpwned.com/api/v3/breachedaccount"
 
@@ -25,15 +27,22 @@ def check_email_breach(email):
     )
 
     if response.status_code == 200:
+        breaches = response.json()
+        risk_assessment = calculate_risk_score(breaches)
+        
         return {
             "status": "found",
-            "breaches": response.json()
+            "breaches": breaches,
+            "risk": risk_assessment
         }
 
     if response.status_code == 404:
+        risk_assessment = calculate_risk_score([])
+        
         return {
             "status": "not_found",
-            "breaches": []
+            "breaches": [],
+            "risk": risk_assessment
         }
 
     response.raise_for_status()

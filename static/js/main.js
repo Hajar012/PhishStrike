@@ -21,16 +21,18 @@ const translations = {
         check: "SCAN EMAIL",
         checking: "Checking...",
         found: "Breaches Found",
-        safe: "No Known Breaches Found",
+        noBreaches: "No Known Breaches Found",
         safeTitle: "Your email was not found in the checked breaches.",
         recommendations: "Security Recommendations",
         safeAdvice:
             "Continue using strong, unique passwords and enable two-factor authentication.",
         invalid: "Please enter a valid email address.",
         error: "Something went wrong. Please try again.",
+        safe: "Safe",
         low: "Low Risk",
         medium: "Medium Risk",
         high: "High Risk",
+        critical: "Critical Risk",
         breached: "Your email appeared in known data breaches.",
         breachDate: "Breach Date",
         exposedData: "Exposed Data",
@@ -45,7 +47,7 @@ const translations = {
         check: "فحص البريد الإلكتروني",
         checking: "جارٍ الفحص...",
         found: "التسريبات المكتشفة",
-        safe: "لم يتم العثور على تسريبات معروفة",
+        noBreaches: "لم يتم العثور على تسريبات معروفة",
         safeTitle:
             "لم يتم العثور على بريدك الإلكتروني ضمن التسريبات التي تم فحصها.",
         recommendations: "التوصيات الأمنية",
@@ -53,9 +55,11 @@ const translations = {
             "استمر في استخدام كلمات مرور قوية وفريدة، وفعّل المصادقة الثنائية.",
         invalid: "يرجى إدخال بريد إلكتروني صحيح.",
         error: "حدث خطأ. يرجى المحاولة مرة أخرى.",
+        safe: "آمن",
         low: "خطورة منخفضة",
         medium: "خطورة متوسطة",
         high: "خطورة مرتفعة",
+        critical: "خطورة حرجة",
         breached: "ظهر بريدك الإلكتروني في تسريبات بيانات معروفة.",
         breachDate: "تاريخ التسريب",
         exposedData: "البيانات المكشوفة",
@@ -84,14 +88,15 @@ function updateLanguage() {
 }
 
 
-function showSafeResult() {
+function showSafeResult(riskAssessment) {
     const t = translations[currentLanguage];
 
     result.classList.remove("hidden");
     result.classList.remove("result-danger");
+    result.classList.remove("result-critical");
     result.classList.add("result-safe");
 
-    riskBadge.textContent = "✓ " + t.safe;
+    riskBadge.textContent = "✓ " + t.noBreaches + (riskAssessment ? ` (${riskAssessment.score}/100)` : "");
     resultTitle.textContent = t.safeTitle;
 
     breachCount.textContent = `${t.found}: 0`;
@@ -105,24 +110,42 @@ function showSafeResult() {
 }
 
 
-function showBreachResult(breaches) {
+function showBreachResult(breaches, riskAssessment) {
     const t = translations[currentLanguage];
 
     result.classList.remove("hidden");
     result.classList.remove("result-safe");
-    result.classList.add("result-danger");
-
-    let riskLevel;
-
-    if (breaches.length <= 2) {
-        riskLevel = t.low;
-    } else if (breaches.length <= 5) {
-        riskLevel = t.medium;
-    } else {
-        riskLevel = t.high;
+    
+    // Clear all risk classes first
+    result.classList.remove("result-low", "result-medium", "result-high", "result-critical");
+    
+    // Add appropriate risk class
+    const riskLevel = riskAssessment.level;
+    let riskDisplayText;
+    
+    switch(riskLevel) {
+        case "low":
+            riskDisplayText = t.low;
+            result.classList.add("result-low");
+            break;
+        case "medium":
+            riskDisplayText = t.medium;
+            result.classList.add("result-medium");
+            break;
+        case "high":
+            riskDisplayText = t.high;
+            result.classList.add("result-high");
+            break;
+        case "critical":
+            riskDisplayText = t.critical;
+            result.classList.add("result-critical");
+            break;
+        default:
+            riskDisplayText = t.medium;
+            result.classList.add("result-medium");
     }
 
-    riskBadge.textContent = "⚠ " + riskLevel;
+    riskBadge.textContent = "⚠ " + riskDisplayText + ` (${riskAssessment.score}/100)`;
 
     resultTitle.textContent = t.breached;
 
@@ -338,7 +361,8 @@ form.addEventListener("submit", async (event) => {
         if (response.ok && data.status === "found") {
 
             showBreachResult(
-                data.breaches || []
+                data.breaches || [],
+                data.risk || { level: "medium", score: 50 }
             );
 
         } else if (
@@ -346,7 +370,7 @@ form.addEventListener("submit", async (event) => {
             data.status === "not_found"
         ) {
 
-            showSafeResult();
+            showSafeResult(data.risk);
 
         } else {
 
