@@ -1,0 +1,104 @@
+1. LOW RISK
+Subject: Monthly Statement Available
+
+Dear customer!!
+
+Your monthly statement is now available for your review.
+
+You can check it through your usual official banking application whenever convenient.
+
+No password, verification code, or payment information is requested.
+
+Thank you,
+Customer Support
+
+---
+الموضوع: كشف الحساب الشهري
+
+عزيزي العميل!!
+
+كشف حسابك الشهري متاح الآن للمراجعة.
+
+يمكنك الاطلاع عليه من خلال تطبيق البنك الرسمي في الوقت الذي يناسبك.
+
+لا نطلب منك كلمة المرور أو رمز التحقق أو أي معلومات دفع.
+
+شكراً،
+خدمة العملاء
+
+2. MEDIUM RISK
+Subject: Final Reminder — Action Required
+
+Dear customer,
+
+This is your final reminder. Please review the attached document within 24 hours.
+
+You can also review the information here:
+http://account-update.xyz/statement
+
+Failure to review the document may delay your account services.
+
+Thank you,
+Customer Support
+
+---
+الموضوع: تحذير أخير — مطلوب إجراء
+
+عزيزي العميل،
+
+هذا هو التحذير الأخير. يرجى مراجعة الملف المرفق خلال 24 ساعة.
+
+يمكنك أيضاً مراجعة المعلومات من خلال الرابط التالي:
+http://account-update.xyz/statement
+
+قد يؤدي عدم مراجعة المستند إلى تأخير بعض خدمات حسابك.
+
+شكراً،
+خدمة العملاء
+
+3. CRITICAL RISK
+Subject: URGENT — Your Account Will Be Suspended!
+
+From: Microsoft Security <security.alerts@gmail.com>
+Reply-To: security-team@account-verification.xyz
+
+Dear user,
+
+URGENT!! Your account has been suspended due to unauthorized activity.
+
+You must verify your identity immediately within 2 hours to avoid permanent account closure.
+
+Confirm your account and password here:
+http://microsoft-security-verification.xyz/login
+
+Please enter your username, password, OTP, and credit card number to complete verification.
+
+Failure to comply will result in permanent loss of access to your account.
+
+Open the attached security document immediately.
+
+Microsoft Security Team
+
+---
+الموضوع: عاجل — سيتم إيقاف حسابك!
+
+من: فريق أمان Microsoft <security.alerts@gmail.com>
+الرد إلى: security-team@account-verification.xyz
+
+عزيزي المستخدم،
+
+عاجل!! تم إيقاف حسابك بسبب نشاط غير مصرح به.
+
+يجب عليك التحقق من هويتك فوراً خلال ساعتين لتجنب إغلاق حسابك بشكل دائم.
+
+قم بتأكيد حسابك وكلمة المرور من خلال الرابط التالي:
+http://microsoft-security-verification.xyz/login
+
+يرجى إدخال اسم المستخدم وكلمة المرور ورمز التحقق ورقم البطاقة البنكية لإكمال عملية التحقق.
+
+سيؤدي عدم الامتثال إلى فقدان الوصول إلى حسابك بشكل دائم.
+
+افتح الملف المرفق فوراً.
+
+فريق أمان Microsoft
+

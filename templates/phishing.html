@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block title %}PhishStrike — Phishing Email Analyzer{% endblock %}
+
+{% block system_status %}PHISHING EMAIL ANALYZER{% endblock %}
+
+{% block footer_text %}PHISHING ANALYSIS TOOL{% endblock %}
+
+{% block content %}
+<!-- Hero -->
+<section class="hero-section">
+
+    <div class="hero-tag">
+        <span>//</span> DETECTING PHISHING ATTEMPTS
+    </div>
+
+    <h1 id="title">
+        Is this email
+        <span>suspicious?</span>
+    </h1>
+
+    <p id="subtitle">
+        Paste suspicious email content to analyze it for phishing indicators.
+        No AI required—deterministic rule-based analysis.
+    </p>
+
+
+    <!-- Analyzer card -->
+    <div class="analyzer-card">
+
+        <div class="scanner-header">
+            <div>
+                <span class="small-label">PHISHING ANALYSIS</span>
+                <span class="scan-status">READY</span>
+            </div>
+
+            <span class="scan-icon">⌬</span>
+        </div>
+
+
+        <form id="phishingForm">
+
+            <label id="emailLabel" for="emailContent">
+                Paste suspicious email content
+            </label>
+
+            <div class="input-wrapper">
+                <textarea
+                    id="emailContent"
+                    name="emailContent"
+                    placeholder="Paste the suspicious email content here..."
+                    rows="12"
+                    maxlength="5000"
+                    autocomplete="off"
+                    required
+                ></textarea>
+            </div>
+
+            <button id="analyzeButton" class="scan-button" type="submit">
+                <span>ANALYZE EMAIL</span>
+                <span class="button-arrow">→</span>
+            </button>
+
+        </form>
+
+
+        <div class="privacy-note">
+            <span>⌾</span>
+            Content is processed temporarily
+            <span class="note-divider">•</span>
+            No permanent storage of email content
+        </div>
+
+    </div>
+
+
+    <!-- Message / Results -->
+    <div id="message" role="alert"></div>
+
+    <div id="result" class="result-card hidden">
+
+        <div id="riskBadge" class="risk-badge"></div>
+
+        <h2 id="resultTitle"></h2>
+
+        <p id="indicatorCount"></p>
+
+        <div id="indicatorList" class="indicator-list"></div>
+
+        <div id="recommendations" class="recommendations"></div>
+
+    </div>
+
+
+    <!-- Analyzer information -->
+    <div class="scanner-info">
+
+        <div class="info-item">
+            <span class="info-label">ANALYSIS</span>
+            <span class="info-value">RULE-BASED</span>
+        </div>
+
+        <div class="info-item">
+            <span class="info-label">INDICATORS</span>
+            <span class="info-value">8+ PATTERNS</span>
+        </div>
+
+        <div class="info-item">
+            <span class="info-label">LANGUAGE</span>
+            <span class="info-value">AR / EN</span>
+        </div>
+
+    </div>
+
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/phishing.js') }}"></script>
+{% endblock %}

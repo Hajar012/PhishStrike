@@ -77,6 +77,16 @@ function updateLanguage() {
 
     languageButton.textContent = t.language;
 
+    document.dispatchEvent(
+        new CustomEvent("languagechange", {
+            detail: { language: currentLanguage }
+        })
+    );
+
+    if (!form) {
+        return;
+    }
+
     document.getElementById("subtitle").textContent = t.subtitle;
     document.getElementById("emailLabel").textContent = t.emailLabel;
 
@@ -307,7 +317,7 @@ languageButton.addEventListener("click", () => {
 });
 
 
-form.addEventListener("submit", async (event) => {
+if (form) form.addEventListener("submit", async (event) => {
 
     event.preventDefault();
 
