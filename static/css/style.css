@@ -914,6 +914,7 @@ h1 span {
 
 .indicator-item-header {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
 
@@ -1224,6 +1225,7 @@ html[dir="rtl"] #recommendations ul {
 
 .breach-card-header {
     display: flex;
+    flex-wrap: wrap;
 
     align-items: center;
     justify-content: space-between;
@@ -1248,6 +1250,10 @@ html[dir="rtl"] #recommendations ul {
     min-width: 0;
 }
 
+.breach-name > div {
+    min-width: 0;
+}
+
 .breach-name h3 {
     margin: 0;
 
@@ -1258,6 +1264,8 @@ html[dir="rtl"] #recommendations ul {
     font-weight: 700;
 
     letter-spacing: -0.01em;
+
+    overflow-wrap: anywhere;
 }
 
 .breach-name span {
@@ -1269,6 +1277,8 @@ html[dir="rtl"] #recommendations ul {
 
     font-family: var(--mono);
     font-size: 10px;
+
+    overflow-wrap: anywhere;
 }
 
 
@@ -1337,6 +1347,8 @@ html[dir="rtl"] #recommendations ul {
 
     font-size: 12.5px;
     line-height: 1.75;
+
+    overflow-wrap: anywhere;
 }
 
 .breach-description a {
@@ -1632,10 +1644,13 @@ html[dir="rtl"] .info-item + .info-item {
     }
 
     .hero-section {
-        padding-top: 35px;
+        padding: 35px 0 60px;
     }
 
     .system-status {
+        flex-wrap: wrap;
+        justify-content: center;
+
         font-size: 8px;
         gap: 6px;
     }
@@ -1649,7 +1664,8 @@ html[dir="rtl"] .info-item + .info-item {
         font-size: 14px;
     }
 
-    .scanner-card {
+    .scanner-card,
+    .analyzer-card {
         padding: 18px;
     }
 
@@ -1702,6 +1718,61 @@ html[dir="rtl"] .info-item + .info-item {
 
     .breach-description {
         font-size: 12px;
+    }
+}
+
+@media (max-width: 420px) {
+
+    .brand {
+        gap: 8px;
+
+        font-size: 13px;
+        letter-spacing: 1px;
+    }
+
+    .main-nav {
+        gap: 8px;
+    }
+
+    .nav-link {
+        padding: 7px 12px;
+
+        font-size: 11px;
+    }
+
+    h1 {
+        font-size: 36px;
+        letter-spacing: -1.5px;
+    }
+
+    .scanner-card,
+    .analyzer-card {
+        padding: 15px;
+    }
+
+    .breach-card {
+        padding: 15px;
+    }
+
+    .breach-logo {
+        width: 40px;
+        height: 40px;
+
+        padding: 7px;
+    }
+
+    .breach-name h3 {
+        font-size: 16px;
+    }
+
+    .indicator-item {
+        padding: 15px 16px;
+    }
+
+    .quiz-option {
+        padding: 12px 13px;
+
+        font-size: 13px;
     }
 }
 
