@@ -11,11 +11,11 @@
     --bg: #07070d;
     --bg-secondary: #0d0d16;
     --card: rgba(16, 16, 27, 0.88);
-    --border: rgba(145, 110, 255, 0.18);
+    --border: rgba(127, 178, 238, 0.18);
 
-    --purple: #8b5cf6;
-    --purple-light: #a78bfa;
-    --purple-glow: rgba(139, 92, 246, 0.35);
+    --accent: #7fb2ee;
+    --accent-light: #aacdf5;
+    --accent-glow: rgba(127, 178, 238, 0.35);
 
     --orange: #ff6b35;
     --text: #f5f3ff;
@@ -44,7 +44,7 @@ body {
     background:
         radial-gradient(
             circle at 50% 20%,
-            rgba(104, 67, 180, 0.12),
+            rgba(88, 138, 205, 0.12),
             transparent 35%
         ),
         var(--bg);
@@ -64,12 +64,12 @@ body {
 
     background-image:
         linear-gradient(
-            rgba(139, 92, 246, 0.045) 1px,
+            rgba(127, 178, 238, 0.045) 1px,
             transparent 1px
         ),
         linear-gradient(
             90deg,
-            rgba(139, 92, 246, 0.045) 1px,
+            rgba(127, 178, 238, 0.045) 1px,
             transparent 1px
         );
 
@@ -99,7 +99,7 @@ body {
     top: -200px;
     left: 15%;
 
-    background: rgba(110, 65, 220, 0.13);
+    background: rgba(88, 138, 205, 0.13);
 
     animation: floatGlow 8s ease-in-out infinite;
 }
@@ -151,17 +151,17 @@ body {
     letter-spacing: 1.5px;
 }
 
-.brand-symbol {
-    color: var(--purple-light);
+.brand-logo {
+    height: 30px;
+    width: auto;
 
-    font-size: 20px;
+    aspect-ratio: 672 / 528;
 
-    text-shadow:
-        0 0 15px var(--purple-glow);
+    display: block;
 }
 
 .brand-accent {
-    color: var(--purple-light);
+    color: var(--accent-light);
 }
 
 .language-button {
@@ -185,9 +185,9 @@ body {
 .language-button:hover {
     color: white;
 
-    border-color: rgba(139, 92, 246, 0.5);
+    border-color: rgba(127, 178, 238, 0.5);
 
-    background: rgba(139, 92, 246, 0.1);
+    background: rgba(127, 178, 238, 0.1);
 
     transform: translateY(-1px);
 }
@@ -224,21 +224,21 @@ body {
 .nav-link:hover {
     color: white;
     
-    border-color: rgba(139, 92, 246, 0.3);
+    border-color: rgba(127, 178, 238, 0.3);
     
-    background: rgba(139, 92, 246, 0.08);
+    background: rgba(127, 178, 238, 0.08);
     
     transform: translateY(-1px);
 }
 
 .nav-link.active {
-    color: var(--purple-light);
+    color: var(--accent-light);
     
-    border-color: rgba(139, 92, 246, 0.4);
+    border-color: rgba(127, 178, 238, 0.4);
     
-    background: rgba(139, 92, 246, 0.12);
+    background: rgba(127, 178, 238, 0.12);
     
-    box-shadow: 0 0 12px rgba(139, 92, 246, 0.15);
+    box-shadow: 0 0 12px rgba(127, 178, 238, 0.15);
 }
 
 .coming-soon {
@@ -333,7 +333,7 @@ body {
 .hero-tag {
     margin-bottom: 18px;
 
-    color: var(--purple-light);
+    color: var(--accent-light);
 
     font-family: var(--mono);
     font-size: 11px;
@@ -355,10 +355,10 @@ h1 {
 }
 
 h1 span {
-    color: var(--purple-light);
+    color: var(--accent-light);
 
     text-shadow:
-        0 0 30px rgba(139, 92, 246, 0.2);
+        0 0 30px rgba(127, 178, 238, 0.2);
 }
 
 #subtitle {
@@ -418,7 +418,7 @@ h1 span {
         linear-gradient(
             90deg,
             transparent,
-            var(--purple),
+            var(--accent),
             transparent
         );
 
@@ -466,7 +466,7 @@ h1 span {
         linear-gradient(
             90deg,
             transparent,
-            var(--purple),
+            var(--accent),
             transparent
         );
 
@@ -506,7 +506,7 @@ h1 span {
 }
 
 .scan-icon {
-    color: var(--purple-light);
+    color: var(--accent-light);
 
     font-size: 22px;
 }
@@ -543,11 +543,11 @@ h1 span {
 }
 
 #emailContent:focus {
-    border-color: rgba(139, 92, 246, 0.65);
+    border-color: rgba(127, 178, 238, 0.65);
 
     box-shadow:
-        0 0 0 3px rgba(139, 92, 246, 0.08),
-        0 0 30px rgba(139, 92, 246, 0.08);
+        0 0 0 3px rgba(127, 178, 238, 0.08),
+        0 0 30px rgba(127, 178, 238, 0.08);
 }
 
 #emailLabel {
@@ -573,7 +573,7 @@ h1 span {
 
     transform: translateY(-50%);
 
-    color: var(--purple-light);
+    color: var(--accent-light);
 
     font-family: var(--mono);
     font-size: 16px;
@@ -609,11 +609,11 @@ h1 span {
 
 #email:focus,
 #urlInput:focus {
-    border-color: rgba(139, 92, 246, 0.65);
+    border-color: rgba(127, 178, 238, 0.65);
 
     box-shadow:
-        0 0 0 3px rgba(139, 92, 246, 0.08),
-        0 0 30px rgba(139, 92, 246, 0.08);
+        0 0 0 3px rgba(127, 178, 238, 0.08),
+        0 0 30px rgba(127, 178, 238, 0.08);
 }
 
 
@@ -637,11 +637,11 @@ h1 span {
     background:
         linear-gradient(
             135deg,
-            #7650e8,
-            #6240c9
+            #5f93d8,
+            #3f6db0
         );
 
-    border: 1px solid rgba(167, 139, 250, 0.35);
+    border: 1px solid rgba(180, 211, 247, 0.4);
     border-radius: 9px;
 
     font-family: var(--mono);
@@ -652,7 +652,7 @@ h1 span {
     cursor: pointer;
 
     box-shadow:
-        0 10px 25px rgba(98, 64, 201, 0.18);
+        0 10px 25px rgba(63, 109, 176, 0.22);
 
     transition: 0.25s ease;
 }
@@ -661,7 +661,7 @@ h1 span {
     transform: translateY(-2px);
 
     box-shadow:
-        0 14px 35px rgba(98, 64, 201, 0.3);
+        0 14px 35px rgba(63, 109, 176, 0.34);
 
     filter: brightness(1.08);
 }
@@ -1340,16 +1340,16 @@ html[dir="rtl"] #recommendations ul {
 }
 
 .breach-description a {
-    color: #a99cff;
+    color: #9cc4f5;
 
     text-decoration: none;
 
     border-bottom:
-        1px solid rgba(169, 156, 255, 0.3);
+        1px solid rgba(156, 196, 245, 0.3);
 }
 
 .breach-description a:hover {
-    border-bottom-color: #a99cff;
+    border-bottom-color: #9cc4f5;
 }
 
 
@@ -1424,10 +1424,10 @@ html[dir="rtl"] #recommendations ul {
     color: rgba(255, 255, 255, 0.62);
 
     background:
-        rgba(120, 100, 255, 0.08);
+        rgba(127, 178, 238, 0.08);
 
     border:
-        1px solid rgba(120, 100, 255, 0.15);
+        1px solid rgba(127, 178, 238, 0.15);
 
     border-radius: 7px;
 
@@ -1450,12 +1450,12 @@ html[dir="rtl"] #recommendations ul {
     background:
         linear-gradient(
             135deg,
-            rgba(120, 100, 255, 0.08),
-            rgba(120, 100, 255, 0.025)
+            rgba(127, 178, 238, 0.08),
+            rgba(127, 178, 238, 0.025)
         );
 
     border:
-        1px solid rgba(120, 100, 255, 0.13);
+        1px solid rgba(127, 178, 238, 0.13);
 
     border-radius: 13px;
 }
@@ -1627,6 +1627,10 @@ html[dir="rtl"] .info-item + .info-item {
         padding: 20px 0;
     }
 
+    .brand-logo {
+        height: 26px;
+    }
+
     .hero-section {
         padding-top: 35px;
     }
@@ -1722,7 +1726,7 @@ html[dir="rtl"] .info-item + .info-item {
     height: 100%;
     width: 0;
 
-    background: linear-gradient(90deg, var(--purple), var(--purple-light));
+    background: linear-gradient(90deg, var(--accent), var(--accent-light));
 
     transition: width 0.35s ease;
 }
@@ -1773,9 +1777,9 @@ html[dir="rtl"] .info-item + .info-item {
 .quiz-option:hover:not(:disabled) {
     transform: translateY(-1px);
 
-    border-color: rgba(139, 92, 246, 0.4);
+    border-color: rgba(127, 178, 238, 0.4);
 
-    background: rgba(139, 92, 246, 0.07);
+    background: rgba(127, 178, 238, 0.07);
 }
 
 .quiz-option:disabled {
@@ -1792,7 +1796,7 @@ html[dir="rtl"] .info-item + .info-item {
     width: 24px;
     height: 24px;
 
-    color: var(--purple-light);
+    color: var(--accent-light);
 
     background: rgba(255, 255, 255, 0.05);
 
