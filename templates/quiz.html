@@ -6,20 +6,22 @@
 
 {% block footer_text %}SECURITY AWARENESS TOOL{% endblock %}
 
+{% block page_key %}quiz{% endblock %}
+
 {% block content %}
 <!-- Hero -->
 <section class="hero-section">
 
-    <div class="hero-tag">
+    <div class="hero-tag" data-i18n-html="quiz.heroTag">
         <span>//</span> TEST YOUR SECURITY INSTINCTS
     </div>
 
-    <h1 id="title">
+    <h1 id="title" data-i18n-html="quiz.heroTitle">
         How aware
         <span>are you?</span>
     </h1>
 
-    <p id="subtitle">
+    <p id="subtitle" data-i18n="quiz.subtitle">
         Answer a short set of phishing and security questions.
         Your score is calculated locally — nothing is stored.
     </p>
@@ -30,7 +32,7 @@
 
         <div class="scanner-header">
             <div>
-                <span class="small-label">SECURITY QUIZ</span>
+                <span class="small-label" data-i18n="quiz.scanLabel">SECURITY QUIZ</span>
                 <span id="quizProgress" class="scan-status">QUESTION 1 / 8</span>
             </div>
 
@@ -50,17 +52,17 @@
     <div class="scanner-info">
 
         <div class="info-item">
-            <span class="info-label">QUESTIONS</span>
+            <span class="info-label" data-i18n="common.questions">QUESTIONS</span>
             <span class="info-value">8</span>
         </div>
 
         <div class="info-item">
-            <span class="info-label">MODE</span>
-            <span class="info-value">INTERACTIVE</span>
+            <span class="info-label" data-i18n="common.mode">MODE</span>
+            <span class="info-value" data-i18n="quiz.modeValue">INTERACTIVE</span>
         </div>
 
         <div class="info-item">
-            <span class="info-label">LANGUAGE</span>
+            <span class="info-label" data-i18n="common.language">LANGUAGE</span>
             <span class="info-value">AR / EN</span>
         </div>
 

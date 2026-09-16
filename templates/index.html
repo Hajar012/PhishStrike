@@ -6,15 +6,17 @@
 
 {% block footer_text %}EMAIL SECURITY TOOL{% endblock %}
 
+{% block page_key %}index{% endblock %}
+
 {% block content %}
 <!-- Hero -->
 <section class="hero-section">
 
-    <div class="hero-tag">
+    <div class="hero-tag" data-i18n-html="index.heroTag">
         <span>//</span> FIGHTING EMAIL ATTACKS
     </div>
 
-    <h1 id="title">
+    <h1 id="title" data-i18n-html="index.heroTitle">
         Is your email
         <span>exposed?</span>
     </h1>
@@ -30,8 +32,8 @@
 
         <div class="scanner-header">
             <div>
-                <span class="small-label">SECURITY SCAN</span>
-                <span class="scan-status">READY</span>
+                <span class="small-label" data-i18n="index.scanLabel">SECURITY SCAN</span>
+                <span class="scan-status" data-i18n="common.ready">READY</span>
             </div>
 
             <span class="scan-icon">⌁</span>
@@ -70,9 +72,9 @@
 
         <div class="privacy-note">
             <span>⌾</span>
-            No password required
+            <span data-i18n="index.privacy1">No password required</span>
             <span class="note-divider">•</span>
-            Your credentials are never requested
+            <span data-i18n="index.privacy2">Your credentials are never requested</span>
         </div>
 
     </div>
@@ -100,17 +102,17 @@
     <div class="scanner-info">
 
         <div class="info-item">
-            <span class="info-label">SOURCE</span>
+            <span class="info-label" data-i18n="common.source">SOURCE</span>
             <span class="info-value">HIBP API</span>
         </div>
 
         <div class="info-item">
-            <span class="info-label">PROCESSING</span>
-            <span class="info-value">TEMPORARY</span>
+            <span class="info-label" data-i18n="common.processing">PROCESSING</span>
+            <span class="info-value" data-i18n="index.processingValue">TEMPORARY</span>
         </div>
 
         <div class="info-item">
-            <span class="info-label">LANGUAGE</span>
+            <span class="info-label" data-i18n="common.language">LANGUAGE</span>
             <span class="info-value">AR / EN</span>
         </div>
 

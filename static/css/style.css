@@ -346,7 +346,7 @@ body {
 
 h1 {
     margin: 0;
-
+    
     font-size: clamp(42px, 7vw, 72px);
     font-weight: 800;
     line-height: 1.05;
@@ -1598,6 +1598,28 @@ html[dir="rtl"] .info-item + .info-item {
 /* =========================================================
    MOBILE
    ========================================================= */
+
+@media (max-width: 900px) {
+
+    .topbar {
+        flex-wrap: wrap;
+        gap: 14px;
+        justify-content: center;
+    }
+
+    .language-button {
+        order: 2;
+    }
+
+    .main-nav {
+        order: 3;
+
+        width: 100%;
+
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
 
 @media (max-width: 650px) {
 

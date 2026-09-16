@@ -6,20 +6,22 @@
 
 {% block footer_text %}URL ANALYSIS TOOL{% endblock %}
 
+{% block page_key %}url{% endblock %}
+
 {% block content %}
 <!-- Hero -->
 <section class="hero-section">
 
-    <div class="hero-tag">
+    <div class="hero-tag" data-i18n-html="url.heroTag">
         <span>//</span> INSPECTING SUSPICIOUS LINKS
     </div>
 
-    <h1 id="title">
+    <h1 id="title" data-i18n-html="url.heroTitle">
         Is this link
         <span>dangerous?</span>
     </h1>
 
-    <p id="subtitle">
+    <p id="subtitle" data-i18n="url.subtitle">
         Paste a suspicious URL to analyze its structure and risk indicators.
         The link is analyzed as text and is never opened.
     </p>
@@ -30,8 +32,8 @@
 
         <div class="scanner-header">
             <div>
-                <span class="small-label">URL ANALYSIS</span>
-                <span class="scan-status">READY</span>
+                <span class="small-label" data-i18n="url.scanLabel">URL ANALYSIS</span>
+                <span class="scan-status" data-i18n="common.ready">READY</span>
             </div>
 
             <span class="scan-icon">⌗</span>
@@ -40,7 +42,7 @@
 
         <form id="urlForm">
 
-            <label id="urlLabel" for="urlInput">
+            <label id="urlLabel" for="urlInput" data-i18n="url.label">
                 Paste a suspicious URL
             </label>
 
@@ -71,9 +73,9 @@
 
         <div class="privacy-note">
             <span>⌾</span>
-            Analyzed as text
+            <span data-i18n="url.privacy1">Analyzed as text</span>
             <span class="note-divider">•</span>
-            The link is never opened or executed
+            <span data-i18n="url.privacy2">The link is never opened or executed</span>
         </div>
 
     </div>
@@ -101,17 +103,17 @@
     <div class="scanner-info">
 
         <div class="info-item">
-            <span class="info-label">ANALYSIS</span>
-            <span class="info-value">TEXT-BASED</span>
+            <span class="info-label" data-i18n="common.analysis">ANALYSIS</span>
+            <span class="info-value" data-i18n="url.analysisValue">TEXT-BASED</span>
         </div>
 
         <div class="info-item">
-            <span class="info-label">CHECKS</span>
-            <span class="info-value">12+ PATTERNS</span>
+            <span class="info-label" data-i18n="common.checks">CHECKS</span>
+            <span class="info-value" data-i18n="url.checksValue">12+ PATTERNS</span>
         </div>
 
         <div class="info-item">
-            <span class="info-label">LANGUAGE</span>
+            <span class="info-label" data-i18n="common.language">LANGUAGE</span>
             <span class="info-value">AR / EN</span>
         </div>
 

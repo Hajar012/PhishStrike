@@ -16,6 +16,8 @@
     const recommendations = document.getElementById("recommendations");
     const checkUrlButton = document.getElementById("checkUrlButton");
 
+    const { escapeHtml } = window.PhishStrikeSanitize;
+
     let currentLanguage = document.documentElement.lang === "ar" ? "ar" : "en";
     let lastResult = null;
 
@@ -101,27 +103,27 @@
                 ? `
                     <div class="indicator-evidence">
                         <span>${t.evidence}</span>
-                        ${item.matches.map((m) => `<code>${m}</code>`).join("")}
+                        ${item.matches.map((m) => `<code>${escapeHtml(m)}</code>`).join("")}
                     </div>
                   `
                 : "";
 
             return `
-                <article class="indicator-item severity-${item.severity}">
+                <article class="indicator-item severity-${escapeHtml(item.severity)}">
                     <div class="indicator-item-header">
-                        <h3>${item.title[currentLanguage]}</h3>
-                        <span class="severity-tag">${t.severities[item.severity]}</span>
+                        <h3>${escapeHtml(item.title[currentLanguage])}</h3>
+                        <span class="severity-tag">${escapeHtml(t.severities[item.severity])}</span>
                     </div>
-                    <p>${item.explanation[currentLanguage]}</p>
+                    <p>${escapeHtml(item.explanation[currentLanguage])}</p>
                     ${evidence}
                 </article>
             `;
         }).join("");
 
         recommendations.innerHTML = `
-            <h3>${t.heading}</h3>
+            <h3>${escapeHtml(t.heading)}</h3>
             <ul>${(data.recommendations || [])
-                .map((r) => `<li>${r[currentLanguage]}</li>`)
+                .map((r) => `<li>${escapeHtml(r[currentLanguage])}</li>`)
                 .join("")}</ul>
         `;
     }

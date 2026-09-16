@@ -10,12 +10,16 @@ const breachCount = document.getElementById("breachCount");
 const breachList = document.getElementById("breachList");
 const recommendations = document.getElementById("recommendations");
 
-let currentLanguage = "en";
+const { escapeHtml, sanitizeDescription } = window.PhishStrikeSanitize;
+const { getInitialLanguage, saveLanguage } = window.PhishStrikeI18n;
+
+let currentLanguage = getInitialLanguage();
 
 const translations = {
     en: {
         language: "العربية",
-        subtitle: "Fighting Email Attacks",
+        subtitle:
+            "Check your email against known data breaches and understand your security risk.",
         emailLabel: "Enter your email address",
         placeholder: "example@email.com",
         check: "SCAN EMAIL",
@@ -41,7 +45,8 @@ const translations = {
 
     ar: {
         language: "English",
-        subtitle: "مكافحة هجمات البريد الإلكتروني",
+        subtitle:
+            "تحقق من بريدك الإلكتروني مقابل تسريبات البيانات المعروفة وافهم مستوى الخطورة.",
         emailLabel: "أدخل بريدك الإلكتروني",
         placeholder: "example@email.com",
         check: "فحص البريد الإلكتروني",
@@ -200,7 +205,7 @@ function showBreachResult(breaches, riskAssessment) {
                             breach.LogoPath
                                 ? `
                                     <img
-                                        src="${breach.LogoPath}"
+                                        src="${escapeHtml(breach.LogoPath)}"
                                         alt=""
                                         class="breach-logo"
                                     >
@@ -210,11 +215,11 @@ function showBreachResult(breaches, riskAssessment) {
 
                         <div>
                             <h3>
-                                ${breach.Title || breach.Name}
+                                ${escapeHtml(breach.Title || breach.Name)}
                             </h3>
 
                             <span>
-                                ${breach.Domain || ""}
+                                ${escapeHtml(breach.Domain || "")}
                             </span>
                         </div>
 
@@ -228,7 +233,7 @@ function showBreachResult(breaches, riskAssessment) {
 
 
                 <div class="breach-description">
-                    ${breach.Description || ""}
+                    ${sanitizeDescription(breach.Description)}
                 </div>
 
 
@@ -277,7 +282,7 @@ function showBreachResult(breaches, riskAssessment) {
                                 ${dataClasses
                                     .map(
                                         (item) =>
-                                            `<span>${item}</span>`
+                                            `<span>${escapeHtml(item)}</span>`
                                     )
                                     .join("")}
 
@@ -312,6 +317,8 @@ languageButton.addEventListener("click", () => {
         currentLanguage === "en"
             ? "ar"
             : "en";
+
+    saveLanguage(currentLanguage);
 
     updateLanguage();
 });

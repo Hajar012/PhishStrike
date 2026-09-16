@@ -6,20 +6,22 @@
 
 {% block footer_text %}PHISHING ANALYSIS TOOL{% endblock %}
 
+{% block page_key %}phishing{% endblock %}
+
 {% block content %}
 <!-- Hero -->
 <section class="hero-section">
 
-    <div class="hero-tag">
+    <div class="hero-tag" data-i18n-html="phishing.heroTag">
         <span>//</span> DETECTING PHISHING ATTEMPTS
     </div>
 
-    <h1 id="title">
+    <h1 id="title" data-i18n-html="phishing.heroTitle">
         Is this email
         <span>suspicious?</span>
     </h1>
 
-    <p id="subtitle">
+    <p id="subtitle" data-i18n="phishing.subtitle">
         Paste suspicious email content to analyze it for phishing indicators.
         No AI required—deterministic rule-based analysis.
     </p>
@@ -30,8 +32,8 @@
 
         <div class="scanner-header">
             <div>
-                <span class="small-label">PHISHING ANALYSIS</span>
-                <span class="scan-status">READY</span>
+                <span class="small-label" data-i18n="phishing.scanLabel">PHISHING ANALYSIS</span>
+                <span class="scan-status" data-i18n="common.ready">READY</span>
             </div>
 
             <span class="scan-icon">⌬</span>
@@ -40,7 +42,7 @@
 
         <form id="phishingForm">
 
-            <label id="emailLabel" for="emailContent">
+            <label id="emailLabel" for="emailContent" data-i18n="phishing.label">
                 Paste suspicious email content
             </label>
 
@@ -48,7 +50,8 @@
                 <textarea
                     id="emailContent"
                     name="emailContent"
-                    placeholder="Paste the suspicious email content here..."
+                    data-i18n-placeholder="phishing.placeholder"
+                    placeholder="Your account has been suspended..."
                     rows="12"
                     maxlength="5000"
                     autocomplete="off"
@@ -66,9 +69,9 @@
 
         <div class="privacy-note">
             <span>⌾</span>
-            Content is processed temporarily
+            <span data-i18n="phishing.privacy1">Content is processed temporarily</span>
             <span class="note-divider">•</span>
-            No permanent storage of email content
+            <span data-i18n="phishing.privacy2">No permanent storage of email content</span>
         </div>
 
     </div>
@@ -96,17 +99,17 @@
     <div class="scanner-info">
 
         <div class="info-item">
-            <span class="info-label">ANALYSIS</span>
-            <span class="info-value">RULE-BASED</span>
+            <span class="info-label" data-i18n="common.analysis">ANALYSIS</span>
+            <span class="info-value" data-i18n="phishing.analysisValue">RULE-BASED</span>
         </div>
 
         <div class="info-item">
-            <span class="info-label">INDICATORS</span>
-            <span class="info-value">8+ PATTERNS</span>
+            <span class="info-label" data-i18n="common.indicators">INDICATORS</span>
+            <span class="info-value" data-i18n="phishing.indicatorsValue">8+ PATTERNS</span>
         </div>
 
         <div class="info-item">
-            <span class="info-label">LANGUAGE</span>
+            <span class="info-label" data-i18n="common.language">LANGUAGE</span>
             <span class="info-value">AR / EN</span>
         </div>
 

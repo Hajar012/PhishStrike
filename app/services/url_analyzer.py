@@ -78,7 +78,7 @@ def _check_dangerous_scheme(url: str) -> List[Dict[str, Any]]:
     for scheme in DANGEROUS_SCHEMES:
         if lowered.startswith(scheme):
             return [_indicator(
-                "dangerous_scheme", 40,
+                "dangerous_scheme", 85,
                 "Dangerous link scheme", "مخطط رابط خطير",
                 f"This is not a normal web link. A '{scheme}' link can run or embed content instead of opening a page.",
                 f"هذا ليس رابط ويب عادياً. رابط من نوع '{scheme}' قد ينفّذ أو يضمّن محتوى بدل فتح صفحة.",
@@ -92,15 +92,17 @@ def analyze_url(url: str) -> Dict[str, Any]:
 
     dangerous = _check_dangerous_scheme(raw)
     if dangerous:
+        score = min(100, dangerous[0]["weight"])
+        level = determine_risk_level(score)
         return {
             "success": True,
             "status": "analyzed",
             "url": raw,
-            "score": min(100, dangerous[0]["weight"]),
-            "level": "critical",
+            "score": score,
+            "level": level,
             "indicator_count": 1,
             "indicators": dangerous,
-            "recommendations": RECOMMENDATIONS["critical"],
+            "recommendations": RECOMMENDATIONS[level],
         }
 
     host, parts, scheme_explicit = _parse(raw)

@@ -85,6 +85,39 @@ def test_dangerous_scheme_is_critical():
     result = analyze_url("javascript:alert(1)")
     assert "dangerous_scheme" in ids(result)
     assert result["level"] == "critical", result
+    assert 81 <= result["score"] <= 100, result
+
+
+def expected_level(score):
+    if score <= 20:
+        return "safe"
+    if score <= 40:
+        return "low"
+    if score <= 60:
+        return "medium"
+    if score <= 80:
+        return "high"
+    return "critical"
+
+
+def test_score_and_level_always_match_srs_thresholds():
+    samples = [
+        "https://www.example.com/products/list",
+        "http://example.com/login",
+        "http://192.168.10.5/login",
+        "https://bit.ly/abc123",
+        "https://example.top/download",
+        "https://paypal.secure-login.xyz/verify",
+        "https://user@evil.example.com/",
+        "https://example.com/a%20b%2Fc%3Fd",
+        "https://example.com/p?a=1&b=2&c=3&d=4",
+        "http://paypal.secure-login.xyz/verify?account=user@example.com&session=1&redirect=login",
+        "javascript:alert(document.cookie)",
+    ]
+    for url in samples:
+        result = analyze_url(url)
+        assert 0 <= result["score"] <= 100, (url, result)
+        assert result["level"] == expected_level(result["score"]), (url, result)
 
 
 def test_english_and_arabic_fields_present():
