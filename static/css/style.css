@@ -145,7 +145,7 @@ body {
     align-items: center;
     gap: 10px;
 
-    font-family: var(--mono);
+    font-family: var(--main-font);
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 1.5px;
@@ -190,6 +190,17 @@ body {
     background: rgba(127, 178, 238, 0.1);
 
     transform: translateY(-1px);
+}
+
+.topbar-controls {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.sound-button[aria-pressed="false"] {
+    opacity: 0.6;
 }
 
 /* =========================================================
@@ -1619,8 +1630,11 @@ html[dir="rtl"] .info-item + .info-item {
         justify-content: center;
     }
 
-    .language-button {
+    .topbar-controls {
         order: 2;
+
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .main-nav {
@@ -1738,6 +1752,12 @@ html[dir="rtl"] .info-item + .info-item {
         padding: 7px 12px;
 
         font-size: 11px;
+    }
+
+    .language-button {
+        padding: 7px 11px;
+
+        font-size: 12px;
     }
 
     h1 {

@@ -63,9 +63,14 @@
             </a>
         </nav>
 
-        <button id="languageButton" class="language-button" type="button">
-            العربية
-        </button>
+        <div class="topbar-controls">
+            <button id="soundButton" class="language-button sound-button" type="button" aria-pressed="true">
+                SOUND ON
+            </button>
+            <button id="languageButton" class="language-button" type="button">
+                العربية
+            </button>
+        </div>
     </header>
 
     <main class="main-container">
@@ -86,6 +91,8 @@
         <span data-i18n="footer.@page">{% block footer_text %}EMAIL SECURITY TOOL{% endblock %}</span>
         <span>2026</span>
     </footer>
+
+    <audio id="breachSound" src="{{ url_for('static', filename='audio/beep.mp3') }}" preload="auto"></audio>
 
     <script src="{{ url_for('static', filename='js/i18n.js') }}"></script>
     <script src="{{ url_for('static', filename='js/sanitize.js') }}"></script>

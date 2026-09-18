@@ -2,6 +2,8 @@ const form = document.getElementById("emailForm");
 const emailInput = document.getElementById("email");
 const message = document.getElementById("message");
 const languageButton = document.getElementById("languageButton");
+const soundButton = document.getElementById("soundButton");
+const breachSound = document.getElementById("breachSound");
 
 const result = document.getElementById("result");
 const riskBadge = document.getElementById("riskBadge");
@@ -40,7 +42,9 @@ const translations = {
         breached: "Your email appeared in known data breaches.",
         breachDate: "Breach Date",
         exposedData: "Exposed Data",
-        affectedAccounts: "Affected Accounts"
+        affectedAccounts: "Affected Accounts",
+        soundOn: "SOUND ON",
+        soundOff: "SOUND OFF"
     },
 
     ar: {
@@ -68,9 +72,69 @@ const translations = {
         breached: "ظهر بريدك الإلكتروني في تسريبات بيانات معروفة.",
         breachDate: "تاريخ التسريب",
         exposedData: "البيانات المكشوفة",
-        affectedAccounts: "الحسابات المتأثرة"
+        affectedAccounts: "الحسابات المتأثرة",
+        soundOn: "الصوت مفعّل",
+        soundOff: "الصوت مغلق"
     }
 };
+
+
+const SOUND_STORAGE_KEY = "phishstrike-sound";
+
+
+function getInitialSound() {
+    try {
+        const saved = window.localStorage.getItem(SOUND_STORAGE_KEY);
+        if (saved === "off") {
+            return false;
+        }
+        if (saved === "on") {
+            return true;
+        }
+    } catch (error) {
+        // localStorage unavailable — keep the default.
+    }
+    return true;
+}
+
+
+let soundEnabled = getInitialSound();
+
+
+function saveSound() {
+    try {
+        window.localStorage.setItem(SOUND_STORAGE_KEY, soundEnabled ? "on" : "off");
+    } catch (error) {
+        // Persistence is best-effort only.
+    }
+}
+
+
+function updateSoundButton() {
+    if (!soundButton) {
+        return;
+    }
+    const t = translations[currentLanguage];
+    soundButton.textContent = soundEnabled ? t.soundOn : t.soundOff;
+    soundButton.classList.toggle("is-off", !soundEnabled);
+    soundButton.setAttribute("aria-pressed", String(soundEnabled));
+}
+
+
+function playBreachSound() {
+    if (!soundEnabled || !breachSound) {
+        return;
+    }
+    try {
+        breachSound.currentTime = 0;
+        const played = breachSound.play();
+        if (played && played.catch) {
+            played.catch(() => {});
+        }
+    } catch (error) {
+        // Ignore playback errors (autoplay policy, missing file, etc.).
+    }
+}
 
 
 function updateLanguage() {
@@ -81,6 +145,7 @@ function updateLanguage() {
         currentLanguage === "ar" ? "rtl" : "ltr";
 
     languageButton.textContent = t.language;
+    updateSoundButton();
 
     document.dispatchEvent(
         new CustomEvent("languagechange", {
@@ -127,6 +192,10 @@ function showSafeResult(riskAssessment) {
 
 function showBreachResult(breaches, riskAssessment) {
     const t = translations[currentLanguage];
+
+    if (breaches && breaches.length > 0) {
+        playBreachSound();
+    }
 
     result.classList.remove("hidden");
     result.classList.remove("result-safe");
@@ -321,6 +390,16 @@ languageButton.addEventListener("click", () => {
     saveLanguage(currentLanguage);
 
     updateLanguage();
+});
+
+
+if (soundButton) soundButton.addEventListener("click", () => {
+
+    soundEnabled = !soundEnabled;
+
+    saveSound();
+
+    updateSoundButton();
 });
 
 
