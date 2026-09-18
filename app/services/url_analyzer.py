@@ -3,7 +3,9 @@ from typing import Any, Dict, List, Tuple
 from urllib.parse import urlsplit, parse_qs
 
 from app.services.risk_assessment import determine_risk_level
-from app.services.phishing_analyzer import SUSPICIOUS_TLDS, IP_HOST, SHORTENERS, BRAND_WORDS
+from app.services.phishing_analyzer import (
+    SUSPICIOUS_TLDS, IP_HOST, SHORTENERS, BRAND_WORDS, _text, _severity,
+)
 
 
 MAX_URL_LENGTH = 2048
@@ -17,18 +19,6 @@ SUSPICIOUS_KEYWORDS = [
 ]
 
 ENCODED_CHAR = re.compile(r"%[0-9a-fA-F]{2}")
-
-
-def _text(en: str, ar: str) -> Dict[str, str]:
-    return {"en": en, "ar": ar}
-
-
-def _severity(weight: int) -> str:
-    if weight >= 25:
-        return "high"
-    if weight >= 12:
-        return "medium"
-    return "low"
 
 
 def _indicator(

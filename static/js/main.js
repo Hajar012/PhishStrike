@@ -172,7 +172,6 @@ function showSafeResult(riskAssessment) {
     const t = translations[currentLanguage];
 
     result.classList.remove("hidden");
-    result.classList.remove("result-danger");
     result.classList.remove("result-critical");
     result.classList.add("result-safe");
 

@@ -252,16 +252,6 @@ body {
     box-shadow: 0 0 12px rgba(127, 178, 238, 0.15);
 }
 
-.coming-soon {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-.coming-soon small {
-    font-size: 9px;
-    opacity: 0.7;
-}
-
 .brand-link {
     color: white;
     text-decoration: none;
@@ -766,8 +756,7 @@ h1 span {
 .result-low,
 .result-medium,
 .result-high,
-.result-critical,
-.result-danger {
+.result-critical {
     position: relative;
     overflow: hidden;
 
@@ -791,10 +780,6 @@ h1 span {
     backdrop-filter: blur(18px);
 }
 
-.result-danger {
-    border-color: rgba(255, 83, 107, 0.18);
-}
-
 .result-safe {
     border-color: rgba(53, 230, 154, 0.16);
 }
@@ -815,7 +800,6 @@ h1 span {
     border-color: rgba(255, 64, 64, 0.24);
 }
 
-.result-danger::before,
 .result-safe::before,
 .result-low::before,
 .result-medium::before,
@@ -836,10 +820,6 @@ h1 span {
     opacity: 0.12;
 
     pointer-events: none;
-}
-
-.result-danger::before {
-    background: var(--danger);
 }
 
 .result-safe::before {

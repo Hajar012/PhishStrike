@@ -2,3 +2,15 @@
 __pycache__/
 *.pyc
 .venv/
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+
+# OS-generated
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

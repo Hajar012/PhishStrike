@@ -174,6 +174,9 @@ if (phishingForm) {
             if (response.ok && data.success) {
                 lastResult = data;
                 render(data);
+                if (data.level && data.level !== "safe") {
+                    playBreachSound();
+                }
             } else {
                 message.textContent = data.error || t.error;
             }
